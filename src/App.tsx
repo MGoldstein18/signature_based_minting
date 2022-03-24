@@ -1,20 +1,20 @@
-import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Generate from './components/Generate';
+import Claim from './components/Claim';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
-  const address = useAddress();
-  const connectWithMetamask = useMetamask();
-  const disconnectWallet = useDisconnect();
   return (
-    <div>
-      {address ? (
-        <>
-          <button onClick={disconnectWallet}>Disconnect Wallet</button>
-          <p>Your address: {address}</p>
-        </>
-      ) : (
-        <button onClick={connectWithMetamask}>Connect with Metamask</button>
-      )}
-    </div>
+    <BrowserRouter>
+      <ChakraProvider>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/generate' element={<Generate />} />
+          <Route path='/claim' element={<Claim />} />
+        </Routes>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 }
 
