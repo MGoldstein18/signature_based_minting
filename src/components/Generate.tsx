@@ -9,10 +9,10 @@ function Generate() {
   const [payload, setPayload] = useState<any>();
   const [signature, setSignature] = useState<any>();
 
-  // State to monitor when to display the "Loading..."
+  // State to control when to display the "Loading..."
   const [loading, setLoading] = useState(false);
 
-  // get the user's address 
+  // get the user's address
   const address = useAddress();
   const connectWithMetamask = useMetamask();
 
@@ -30,7 +30,7 @@ function Generate() {
 
     // Give the user 24 hours to mint the NFT
     const startTime = new Date();
-    const endTime = new Date(Date.now() + 60 * 60 * 24 * 1000);
+    const endTime = new Date(Date.now() + 60 * 1000);
 
     // Set up the NFT metadata
     const nftMetadata = {
@@ -56,6 +56,7 @@ function Generate() {
     // Set state to the relevant parts of the response
     setPayload(response?.payload);
     setSignature(response?.signature);
+    
   }
 
   // check for address and display connect button if no address is found
